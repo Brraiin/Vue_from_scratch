@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Vue interface</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-bind:title="menu"> {{ title }} </h1>
+        <ul>
+            <li v-for="item in items">
+                {{ item }}
+            </li>
+        </ul>
+
+        <input type="text" v-model="item" />
+        <button @click="addItem(item)">Add Item</button>
+        <button @click="items.push(item)">Add Item 2</button>
+
+        <hr />
+
+        <ul>
+            <li v-for="option in options">
+                {{ option.text }}
+                <span v-if="option.checked">: Checked !</span>
+                <span v-else="option.checked">: not Checked !</span>
+                <button @click="option.checked = ! option.checked">Toggle</button>
+            </li>
+        </ul>
+
+        <hr />
+
+        <input type="text" v-model="price">
+        <div>Tax {{ taxFormatted }} -> {{ moneyFormatted(tax) }}</div>
+        <div>Total {{ total }} ->  {{ totalFormatted }} -> {{ moneyFormatted(total) }}</div>
+
+        <hr />
+
+        <accordion v-for="movie in movies" :key="item.id" :movie="movie"></accordion>
+
+        <hr />
+        <list></list>
+
+        <hr />
+    </div>
+
+    <script src="./dist/app.js"></script>
+
+</body>
+</html>
